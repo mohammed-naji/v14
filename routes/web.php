@@ -1,8 +1,16 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+// use App\Http\Controllers\SiteController;
 
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\SiteController;
+use App\Http\Controllers\Test2Controller;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestController;
 use function PHPUnit\Framework\returnSelf;
+
+Route::get('/', [TestController::class, 'index'])->name('homepage');
+
 
 // use Illuminate\Support\Facades\Route;
 
@@ -43,21 +51,36 @@ use function PHPUnit\Framework\returnSelf;
 // Route::patch('', '');
 // Route::delete('', '');
 
-Route::post('/', function() {
-    return 'Homepage Page - Post';
-});
+// Route::post('/', function() {
+//     return 'Homepage Page - Post';
+// });
 
-Route::put('/', function() {
-    return 'Homepage Page - Put';
-});
+// Route::put('/', function() {
+//     return 'Homepage Page - Put';
+// });
 
-Route::delete('/', function() {
-    return 'Homepage Page - Delete';
-});
+// Route::delete('/', function() {
+//     return 'Homepage Page - Delete';
+// });
 
-Route::get('/', function() {
-    return 'Homepage Page - Get';
-});
+// Route::get('/', function() {
+//     // return '<a href="'.url('/contact-us').'">Contact Us</a>';
+//     // return '<a href="'.route('cpage').'">Contact Us</a>';
+//     $name = 'ali';
+//     $user = 'ali19';
+//     $age = 19;
+//     // return '<a href="'.url('user/'.$name.'/'.$user.'/'.$age).'">User Profile</a>';
+//     return '<a href="'.route('userinfo', [$name, $user, $age]).'">User Profile</a>';
+// });
+
+// mohamednaji.com/v14/contact-us
+// mohamednaji.com/contact-us
+
+
+// Route::get('/contact', function() {
+//     return 'Contact Us Page';
+// })->name('cpage');
+
 
 // anonymous, callback, clouser
 
@@ -86,17 +109,13 @@ Route::get('/', function() {
 //     return 'Welcome ' . $name;
 // });
 
-Route::get('sessions/{course}/{type?}', function ($course, $type = '') {
-    return 'Course ' . $course . ' ' . $type;
-});
+// Route::get('sessions/{course}/{type?}', function ($course, $type = '') {
+//     return 'Course ' . $course . ' ' . $type;
+// });
 
 
-Route::prefix('admin')->group(function() {
-    Route::get('/home', function() { return 'Admin Home'; });
-    Route::get('/posts', function() { return 'Admin Posts'; });
-    Route::get('/products', function() { return 'Admin Products'; });
-    Route::get('/orders', function() { return 'Admin Orders'; });
-});
+
+// DRY => Dont Repeate Yourself
 
 // Route::fallback(function() {
 //     return 'فش صفحة ي حبيبي';
@@ -117,3 +136,54 @@ Route::prefix('admin')->group(function() {
 // Route::get('/{ddd}/{qq}', function() {
 //     return 'Error';
 // });
+
+// Route::get('/user/{name}/{username}/{age}', function($name, $username, $age) {
+//     return "Welcome $name, username $username your age is $age";
+// })->whereAlpha('name')->whereAlphaNumeric('username')->whereNumber('age')->name('userinfo');
+
+
+// :: class::method oop
+// => key => value array
+// -> object -> method
+
+// method -> method -> method -> method
+
+
+// mohamednaji.com => main domain
+// mohamednaji.com/v14 => sub directory
+// v14.mohamednaji.com => sub domain
+
+// $name = 'Moh';
+// const name = 'Moh';
+// define('name', 'Mohammed');
+
+// echo name
+
+// camelCase => newPageName
+// PascalCase => NewPageName
+// snake_case => new_page_name
+// kebab-case => new-page-name
+// UPPERCASE => NEWPAGENAME
+
+
+// home, about, contact, team, services
+
+Route::get('home', [SiteController::class, 'home'])->name('site.home');
+Route::get('about', [SiteController::class, 'about'])->name('site.about');
+Route::get('contact', [SiteController::class, 'contact'])->name('site.contact');
+Route::get('team', [SiteController::class, 'team'])->name('site.team');
+Route::get('services', [SiteController::class, 'services'])->name('site.services');
+
+// Route::get('home', [SiteController::class, 'home']);
+
+// Controller Type
+// 1. Basic Controller
+// 2. Invokable Controller
+// 3. Resource Controller
+
+
+Route::get('news', NewsController::class);
+
+// PHP CRUD Application
+
+Route::get('/profile/{id?}', [Test2Controller::class, 'index']);
