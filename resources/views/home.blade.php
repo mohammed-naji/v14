@@ -21,15 +21,16 @@
             <th>Instructor</th>
         </tr>
 
-        <?php foreach($courses as $course): ?>
-        <tr>
+        @foreach($courses as $course)
+        {{-- @dump($loop) --}}
+        <tr {{ ($loop->last) ? 'class=bg-success' : '' }} >
             <td><?= $course['id'] ?></td>
             <td><?= $course['name'] ?></td>
             <td><?= $course['price'] ?></td>
             <td><?= $course['hours'] ?></td>
             <td><?= $course['instructor'] ?></td>
         </tr>
-        <?php endforeach ?>
+        @endforeach
     </table>
     </div>
 

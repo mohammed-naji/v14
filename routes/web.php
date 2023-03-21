@@ -2,6 +2,8 @@
 
 // use App\Http\Controllers\SiteController;
 
+use App\Http\Controllers\AgencyController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\Test2Controller;
@@ -187,3 +189,22 @@ Route::get('news', NewsController::class);
 // PHP CRUD Application
 
 Route::get('/profile/{id?}', [Test2Controller::class, 'index']);
+
+
+
+
+
+
+
+
+
+Route::get('agency', [AgencyController::class, 'index']);
+Route::post('agency', [AgencyController::class, 'index']);
+
+
+Route::prefix('blog')->name('blog.')->group(function() {
+    Route::get('/', [BlogController::class, 'index'])->name('index');
+    Route::get('/about', [BlogController::class, 'about'])->name('about');
+    Route::get('/post', [BlogController::class, 'post'])->name('post');
+    Route::get('/contact', [BlogController::class, 'contact'])->name('contact');
+});
