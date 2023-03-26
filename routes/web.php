@@ -4,7 +4,9 @@
 
 use App\Http\Controllers\AgencyController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\FormsController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\Test2Controller;
 use Illuminate\Support\Facades\Route;
@@ -208,3 +210,16 @@ Route::prefix('blog')->name('blog.')->group(function() {
     Route::get('/post', [BlogController::class, 'post'])->name('post');
     Route::get('/contact', [BlogController::class, 'contact'])->name('contact');
 });
+
+Route::prefix('resume')->name('resume.')->group(function() {
+    Route::get('/', [ResumeController::class, 'index'])->name('index');
+    Route::get('/experience', [ResumeController::class, 'experience'])->name('experience');
+    Route::get('/education', [ResumeController::class, 'education'])->name('education');
+    Route::get('/skills', [ResumeController::class, 'skills'])->name('skills');
+    Route::get('/interests', [ResumeController::class, 'interests'])->name('interests');
+    Route::get('/awards', [ResumeController::class, 'awards'])->name('awards');
+});
+
+
+Route::get('form1', [FormsController::class, 'form1'])->name('form1');
+Route::post('form1', [FormsController::class, 'form1_data'])->name('form1_data');
