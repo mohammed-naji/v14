@@ -34,4 +34,22 @@ class FormsController extends Controller
         // return "Welcome $name your email is $email";
         return view('forms.form2_data', compact('name', 'email'));
     }
+
+    public function form3()
+    {
+        return view('forms.form3');
+    }
+
+    public function form3_data(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|min:4|max:20|string',
+            'email' => 'required|ends_with:@gmail.com',
+            'dob' => 'nullable|before:today',
+            'end_event' => 'nullable|after:start_event',
+            'password' => 'confirmed'
+        ]);
+
+        dd($request->all());
+    }
 }
