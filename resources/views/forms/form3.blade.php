@@ -34,7 +34,12 @@
 
             <div class="mb-3">
                 <label>Name</label>
-                <input type="text" name="name" placeholder="Name" class="form-control @error('name') is-invalid @enderror " />
+                <input type="text" name="name" placeholder="Name" class="form-control @error('name') is-invalid @enderror "
+                {{-- value=" if(isset($_POST['name'])) { echo $_POST['name'] } " --}}
+
+                value="{{ old('name', 'old namd') }}"
+
+                 />
                 @error('name')
                     <small class="invalid-feedback">{{ $message }}</small>
                 @enderror
@@ -42,7 +47,10 @@
 
             <div class="mb-3">
                 <label>Email</label>
-                <input type="email" name="email" placeholder="Email" class="form-control" />
+                <input type="email" name="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror" />
+                @error('email')
+                    <small class="invalid-feedback">{{ $message }}</small>
+                @enderror
             </div>
 
             <div class="mb-3">
