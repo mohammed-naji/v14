@@ -1,0 +1,52 @@
+v12_project
+** users
+-- id
+-- name
+-- email
+-- phone
+-- password
+-- type {admin, employer, employee}
+
+** projects
+-- id
+-- name
+-- description
+-- status
+-- budget
+-- time
+-- category_id
+
+** categories
+-- id
+-- name
+
+** messages
+-- id
+-- sender_id
+-- receiver_id
+-- message
+
+** proposals
+-- id
+-- employee_id
+-- project_id
+-- content
+-- time
+-- cost
+
+** skills
+-- id
+-- name
+
+** project_skill
+-- project_id
+-- skill_id
+
+-- payments
+-- id
+-- emplyer_id
+-- employee_id
+-- project_id
+-- cost
+-- commission
+-- transaction_id

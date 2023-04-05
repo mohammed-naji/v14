@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\Form3Request;
+use App\Mail\TestMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class FormsController extends Controller
@@ -69,5 +71,50 @@ class FormsController extends Controller
         // }
 
         dd($request->all());
+    }
+
+    public function form4()
+    {
+        return view('forms.form4');
+    }
+
+    public function form4_data(Request $request)
+    {
+        $request->validate([
+            'cv' => 'file|mimes:png,jpg,docx,doc,pdf'
+        ]);
+        // mkdir()
+        // rmdir()
+        // unlink()
+        // unset()
+        // dd($request->all());
+
+        // abc.png => 646464549876546497abc.png
+        // abc.png => 97646444549877797abc.png
+
+        // $cvname = rand().time().$request->file('cv')->getClientOriginalName();
+
+        $ex = $request->file('cv')->getClientOriginalExtension();
+
+        $clientname = strtolower( $request->name );
+        $clientname = str_replace(' ', '-', $clientname);
+        $cvname = $clientname.'-cv-'.rand().'.'.$ex;
+
+        // dd($clientname);
+
+        // $cvname = rand().time().$request->file('cv')->getClientOriginalName();
+        $request->file('cv')->move(public_path('uploads'), $cvname);
+    }
+
+    public function form5()
+    {
+        return view('forms.form5');
+    }
+
+    public function form5_data(Request $request)
+    {
+
+        Mail::to('admin@gmail.com')->send( new TestMail() );
+
     }
 }
