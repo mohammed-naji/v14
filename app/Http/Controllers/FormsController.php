@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\Form3Request;
+use App\Mail\ContactMail;
 use App\Mail\TestMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -113,8 +114,9 @@ class FormsController extends Controller
 
     public function form5_data(Request $request)
     {
+        $data = $request->except('_token');
 
-        Mail::to('admin@gmail.com')->send( new TestMail() );
+        Mail::to('mm1358145@gmail.com')->send(new ContactMail($data));
 
     }
 }
