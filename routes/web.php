@@ -6,6 +6,7 @@ use App\Http\Controllers\AgencyController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\FormsController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\Test2Controller;
@@ -235,3 +236,12 @@ Route::post('form4', [FormsController::class, 'form4_data'])->name('form4_data')
 
 Route::get('form5', [FormsController::class, 'form5'])->name('form5');
 Route::post('form5', [FormsController::class, 'form5_data'])->name('form5_data');
+
+
+
+
+
+// Posts CRUD Application
+// R => Read
+Route::get('posts', [PostController::class, 'index'])->name('posts.index');
+Route::get('posts/{id}', [PostController::class, 'show'])->name('posts.show');
