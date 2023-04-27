@@ -22,6 +22,14 @@
         <i class="fab fa-twitter"></i> --}}
 
         <h1>All Posts</h1>
+        <a href="{{ route('posts.create') }}">Add new Post</a>
+        <form action="{{ route('posts.index') }}" method="GET">
+            <div class="input-group mb-3">
+                <input name="search" type="text" class="form-control" value="{{ request()->search }}" placeholder="Search about anything ..." >
+                <button class="btn btn-primary" id="button-addon2">Search</button>
+            </div>
+        </form>
+
         <table class="table table-bordered table-hover table-striped">
             <tr class="table-dark">
                 <th>ID</th>
@@ -48,9 +56,8 @@
 
         </table>
 
-        {{ $posts->links() }}
+        {{ $posts->appends($_GET)->links() }}
     </div>
-
 
 
 </body>

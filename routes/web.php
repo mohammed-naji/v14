@@ -12,6 +12,7 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\Test2Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
+
 use function PHPUnit\Framework\returnSelf;
 
 Route::get('/', [TestController::class, 'index'])->name('homepage');
@@ -242,6 +243,13 @@ Route::post('form5', [FormsController::class, 'form5_data'])->name('form5_data')
 
 
 // Posts CRUD Application
-// R => Read
+// R => Read All
 Route::get('posts', [PostController::class, 'index'])->name('posts.index');
+
+// C => Create
+Route::get('posts/create', [PostController::class, 'create'])->name('posts.create');
+
+// R => Read Single
 Route::get('posts/{id}', [PostController::class, 'show'])->name('posts.show');
+
+

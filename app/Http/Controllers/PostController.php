@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+
+        // dd($request->search);
         // http://127.0.0.1:8000/posts?page=1
         // $offset = 0;
 
@@ -22,7 +24,15 @@ class PostController extends Controller
         // $posts = Post::simplePaginate(20);
         // $posts = Post::orderBy('id', 'desc')->paginate(20);
         // $posts = Post::orderByDesc('id')->paginate(20);
-        $posts = Post::latest('id')->paginate(20);
+
+        if($request->has('search')) {
+            $posts = Post::latest('id')
+            ->where('title', 'like', '%' . $request->search . '%')
+            ->paginate(20);
+        }else {
+            $posts = Post::latest('id')->paginate(20);
+        }
+
 
 
         // dd($posts);
@@ -40,5 +50,10 @@ class PostController extends Controller
         // }
 
         return view('posts.show', compact('post'));
+    }
+
+    public function create()
+    {
+        return view('posts.create');
     }
 }
