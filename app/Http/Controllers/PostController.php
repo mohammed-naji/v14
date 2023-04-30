@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -55,5 +56,57 @@ class PostController extends Controller
     public function create()
     {
         return view('posts.create');
+    }
+
+    public function store(Request $request)
+    {
+        // validate data
+        $request->validate([
+            'title' => 'required',
+            'image' => 'required',
+            'content' => 'required',
+        ]);
+
+        // upload files
+        $imgname = rand().time().$request->file('image')->getClientOriginalName();
+        $request->file('image')->move(public_path('uploads/posts'), $imgname);
+
+        // save to database
+        // 1. Query Builder
+        // DB::table('posts')->insert([
+        //     'title' => $request->title,
+        //     'image' => $imgname,
+        //     'content' => $request->content,
+        // ]);
+
+        // 2. Model Object
+        // $post = new Post();
+        // $post->title = $request->title;
+        // $post->image = $imgname;
+        // $post->content = $request->content;
+        // $post->save();
+
+        // 3. Eelqount Model
+        Post::create([
+            'title' => $request->title,
+            'image' => $imgname,
+            'content' => $request->content,
+        ]);
+
+        // redirect to new page
+        return redirect()
+        ->route('posts.index')
+        ->with('msg', 'Post created successfully');
+    }
+
+    public function destroy($id)
+    {
+        Post::destroy($id);
+
+        // DELETE FROM posts WHERE id = $id
+
+        return redirect()
+        ->route('posts.index')
+        ->with('msg', 'Post Deleted successfully');
     }
 }

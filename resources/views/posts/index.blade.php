@@ -21,8 +21,18 @@
         <i class="fab fa-facebook"></i>
         <i class="fab fa-twitter"></i> --}}
 
-        <h1>All Posts</h1>
-        <a href="{{ route('posts.create') }}">Add new Post</a>
+        @if (session('msg'))
+            <div class="alert alert-success">
+                {{ session('msg') }}
+            </div>
+        @endif
+
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h1>All Posts</h1>
+            <a href="{{ route('posts.create') }}" class="btn btn-dark">Add new Post</a>
+        </div>
+
         <form action="{{ route('posts.index') }}" method="GET">
             <div class="input-group mb-3">
                 <input name="search" type="text" class="form-control" value="{{ request()->search }}" placeholder="Search about anything ..." >
@@ -42,14 +52,21 @@
             @foreach ($posts as $post)
             <tr>
                 <td>{{ $post->id }}</td>
-                <td><img width="80" src="{{ $post->image }}" alt=""></td>
+                <td>
+                    <img width="80" src="{{ asset('uploads/posts/'.$post->image) }}" alt=""></td>
                 <td>{{ $post->title }}</td>
                 <td>{{ $post->created_at->format('d F, Y') }}</td>
                 <td>{{ $post->updated_at->diffForHumans() }}</td>
                 <td>
                     <a href="{{ route('posts.show', $post->id) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>
                     <a href="#" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
-                    <a href="#" class="btn btn-danger btn-sm"><i class="far fa-trash-can"></i></a>
+                    {{-- <a href="{{ route('posts.destroy', $post->id) }}" class="btn btn-danger btn-sm"><i class="far fa-trash-can"></i></a> --}}
+
+                    <form class="d-inline" action="{{ route('posts.destroy', $post->id) }}" method="post">
+                        @csrf
+                        @method('delete')
+                        <button onclick="return confirm('Are you sure?!')" class="btn btn-danger btn-sm"><i class="far fa-trash-can"></i></button>
+                    </form>
                 </td>
             </tr>
             @endforeach

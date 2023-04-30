@@ -248,8 +248,10 @@ Route::get('posts', [PostController::class, 'index'])->name('posts.index');
 
 // C => Create
 Route::get('posts/create', [PostController::class, 'create'])->name('posts.create');
+Route::post('posts/create', [PostController::class, 'store'])->name('posts.store');
 
 // R => Read Single
 Route::get('posts/{id}', [PostController::class, 'show'])->name('posts.show');
 
-
+// D => Delete
+Route::delete('posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
