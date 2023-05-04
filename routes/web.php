@@ -244,14 +244,20 @@ Route::post('form5', [FormsController::class, 'form5_data'])->name('form5_data')
 
 // Posts CRUD Application
 // R => Read All
-Route::get('posts', [PostController::class, 'index'])->name('posts.index');
+// Route::get('posts', [PostController::class, 'index'])->name('posts.index');
+// // C => Create
+// Route::get('posts/create', [PostController::class, 'create'])->name('posts.create');
+// Route::post('posts/create', [PostController::class, 'store'])->name('posts.store');
+// // R => Read Single
+// Route::get('posts/{id}', [PostController::class, 'show'])->name('posts.show');
+// // D => Delete
+// Route::delete('posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
+// // U => UPDATE
+// Route::get('posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
+// Route::put('posts/{id}/update', [PostController::class, 'update'])->name('posts.update');
 
-// C => Create
-Route::get('posts/create', [PostController::class, 'create'])->name('posts.create');
-Route::post('posts/create', [PostController::class, 'store'])->name('posts.store');
-
-// R => Read Single
-Route::get('posts/{id}', [PostController::class, 'show'])->name('posts.show');
-
-// D => Delete
-Route::delete('posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
+Route::get('posts/trash', [PostController::class, 'trash'])->name('posts.trash');
+Route::get('posts/{id}/restore', [PostController::class, 'restore'])->name('posts.restore');
+Route::get('posts/{id}/forecedelete', [PostController::class, 'forecedelete'])->name('posts.forecedelete');
+Route::resource('posts', PostController::class);
+Route::resource('categories', PostController::class);

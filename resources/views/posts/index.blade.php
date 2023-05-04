@@ -59,7 +59,7 @@
                 <td>{{ $post->updated_at->diffForHumans() }}</td>
                 <td>
                     <a href="{{ route('posts.show', $post->id) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>
-                    <a href="#" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
+                    <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
                     {{-- <a href="{{ route('posts.destroy', $post->id) }}" class="btn btn-danger btn-sm"><i class="far fa-trash-can"></i></a> --}}
 
                     <form class="d-inline" action="{{ route('posts.destroy', $post->id) }}" method="post">

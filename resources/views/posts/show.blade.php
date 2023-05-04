@@ -14,7 +14,8 @@
 
         <h1 class="mb-4">{{ $post->title }}</h1>
         <img class="mb-5" src="{{ $post->image }}" alt="">
-        <p>{{ $post->content }}</p>
+        {{-- <p>{{ $post->content }}</p> --}}
+        {!! $post->content !!}
 
     </div>
 
