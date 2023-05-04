@@ -7,6 +7,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\FormsController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RealtionController;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\Test2Controller;
@@ -261,3 +262,6 @@ Route::get('posts/{id}/restore', [PostController::class, 'restore'])->name('post
 Route::get('posts/{id}/forecedelete', [PostController::class, 'forecedelete'])->name('posts.forecedelete');
 Route::resource('posts', PostController::class);
 Route::resource('categories', PostController::class);
+
+
+Route::get('one-to-one', [RealtionController::class, 'one_to_one']);
