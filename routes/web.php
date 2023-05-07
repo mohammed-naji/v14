@@ -265,3 +265,4 @@ Route::resource('categories', PostController::class);
 
 
 Route::get('one-to-one', [RealtionController::class, 'one_to_one']);
+Route::get('one-to-many', [RealtionController::class, 'one_to_many']);

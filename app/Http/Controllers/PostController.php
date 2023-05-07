@@ -42,7 +42,7 @@ class PostController extends Controller
 
     public function show($id)
     {
-        $post = Post::findOrFail($id); // select * from posts where id = 50
+        $post = Post::with('comments.user')->findOrFail($id); // select * from posts where id = 50
 
         // dd($post);
 

@@ -17,6 +17,19 @@
         {{-- <p>{{ $post->content }}</p> --}}
         {!! $post->content !!}
 
+        <hr>
+
+        <h2>Comments ({{ $post->comments->count() }})</h2>
+
+        <div class="text-start w-50 mx-auto">
+            @foreach ($post->comments as $comment)
+                <div class="d-flex align-items-center">
+                    <h5 class="m-0">{{ $comment->user->name }}</h5>
+                    <small class="mx-3">{{ $comment->created_at->diffForHumans() }}</small>
+                </div>
+                <p>{{ $comment->comment }}</p>
+            @endforeach
+        </div>
     </div>
 
 
